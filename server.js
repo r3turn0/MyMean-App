@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
     });
 });
 
-require("./app/routes/turorial.routes")(app);
+require("./routes/routes.js")(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
