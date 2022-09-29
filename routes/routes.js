@@ -9,8 +9,8 @@ module.exports = app => {
     // Retrieve all tasks
     router.get("/", tasks.findAll);
   
-    // Retrieve all published tasks
-    router.get("/published", tasks.findAllPublished);
+    // Retrieve all completed tasks
+    router.get("/completed", tasks.findAllCompleted);
   
     // Retrieve a single task with id
     router.get("/:id", tasks.findOne);
