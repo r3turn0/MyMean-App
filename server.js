@@ -31,7 +31,7 @@ db.sequelize.sync({ force: true })
 // simple route
 app.get("/", (req, res) => {
     res.json({
-        message: "Welcome to the MyMEAN App",
+        message: "Welcome to the MyMEAN App, the API is located here: http://localhost:8080/api/tasks",
         description: "A MySQL, Express, Angular, Node.js Task List Application",
         objective: "To build a Task List application. The server will listen for any incoming requests to the API designated by routes of the application. This is where CRUD operations are performed defined by the controller. The controller will make queries to the database modeled in model and is exported in index where it will sync with the server application."
     });
