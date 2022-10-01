@@ -4,6 +4,9 @@
 const express = require("express"); // web framework for building REST APIs
 const cors = require("cors"); // provides middleware to enable CORS with various options
 const app = express();
+const path = __dirname + '/views/';
+
+app.use(express.static(path));
 
 var coreOptions = {
     origin: "http://localhost:8081" // mySQL database points to port 8080 or 8081
@@ -17,7 +20,8 @@ app.use(express.json());
 //parse requests of content-type application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));
 
-const db = require("./models");
+// Sync with the database
+const db = require("./models/db");
 // In development, you may need to drop existing tables and re-sync database. Just use force: true
 db.sequelize.sync({ force: true })
   .then(() => {
@@ -36,6 +40,10 @@ app.get("/", (req, res) => {
         objective: "To build a Task List application. The server will listen for any incoming requests to the API designated by routes of the application. This is where CRUD operations are performed defined by the controller. The controller will make queries to the database modeled in model and is exported in index where it will sync with the server application."
     });
 });
+
+/*app.get('/', function (req,res) {
+    res.sendFile(path + "index.html");
+});*/
 
 require("./routes/routes.js")(app);
 

@@ -1,5 +1,4 @@
 // Create your connection to the database here then sync it with the server in server.js
-
 const dbConfig = require("../config/dbconfig.js"); // not added to the db module because its sensitive data
 
 const Sequelize = require("sequelize");
@@ -23,6 +22,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+// the schema
 db.tasks = require("./model.js")(sequelize, Sequelize);
 
 module.exports = db;

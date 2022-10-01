@@ -1,11 +1,11 @@
-const db = require("../models/index.js");
+const db = require("../models/db.js");
 const Tasks = db.tasks;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new task
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.name) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a task
   const task = {
-    title: req.body.title,
+    name: req.body.name,
     description: req.body.description,
     completed: req.body.completed ? req.body.completed : false
   };
@@ -34,8 +34,8 @@ exports.create = (req, res) => {
 
 // Retrieve all tasks from the database.
 exports.findAll = (req, res) => {
-    const title = req.query.title;
-    var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+    const name = req.query.name;
+    var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
   
     Tasks.findAll({ where: condition })
       .then(data => {
