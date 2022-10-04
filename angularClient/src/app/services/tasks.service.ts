@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Task } from '../interfaces/task';
 
-const baseUrl = 'http://localhost:8080/api/tutorials';
+const baseUrl = 'http://localhost:8080/api/tasks';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ const baseUrl = 'http://localhost:8080/api/tutorials';
 export class TasksService {
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(baseUrl);
+  getAll(): Observable<Task[]> {
+    return this.http.get<Task[]>(baseUrl);
   }
 
   get(id:Number): Observable<any> {
@@ -35,7 +36,7 @@ export class TasksService {
     return this.http.delete(baseUrl);
   }
 
-  findByTitle(name:String): Observable<any> {
+  findByName(name:String): Observable<any> {
     return this.http.get(`${baseUrl}?name=${name}`);
   }
 }
