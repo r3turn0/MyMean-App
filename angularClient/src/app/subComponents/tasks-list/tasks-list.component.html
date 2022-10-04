@@ -1,1 +1,6 @@
 <p>tasks-list works!</p>
+<ul *ngFor="let task of tasks">
+    <li >{{ task.name }}</li>
+    <li >{{ task.description }}</li>
+    <li >{{ task.createdAt }}</li>
+</ul>
