@@ -16,7 +16,7 @@ export class TasksListComponent implements OnInit {
 
   getAllTasks() : void {
     this.TasksService.getAll().subscribe
-     ((tasks: Task[]) => {this.tasks = tasks},
+     ((tasks: Task[]) => {this.tasks = tasks; console.log(this.tasks)},
      (err: HttpErrorResponse) => err.error instanceof Error ? console.log('Error loading pages: ', err.error.message) : console.log(`Backend returned code: ${err.status} body was: ${err.error}`)  
      );
   }
